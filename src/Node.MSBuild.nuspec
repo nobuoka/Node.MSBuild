@@ -3,7 +3,7 @@
   <metadata>
     <id>Node.MSBuild</id>
     <title>Node.MSBuild</title>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>Yu Nobuoka</authors>
     <owners>Yu Nobuoka</owners>
     <licenseUrl>https://raw.githubusercontent.com/nobuoka/Node.MSBuild/master/LICENSE</licenseUrl>
