@@ -1,6 +1,7 @@
 plugins {
   id "com.ullink.nuget" version "2.11"
 }
+nuget.version = '3.3.0'
 
 def outputDir = file('build')
 task('outputDir') {
