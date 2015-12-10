@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BuildDependsOn>
+      SetupNode;
+      $(BuildDependsOn);
+    </BuildDependsOn>
+  </PropertyGroup>
+  <Target Name="DownloadNodeExeFile" Condition="!Exists('$(NodeExeFilePath)')">
+    <MakeDir Directories="$([System.IO.Path]::GetDirectoryName($(NodeExeFilePath)))" />
+    <Exec Command="powershell -Command Invoke-WebRequest &quot;$(NodeDownloadUrl)&quot; -OutFile &quot;$(NodeExeFilePath)&quot;" />
+  </Target>
+  <Target Name="SetupNode" DependsOnTargets="DownloadNodeExeFile" />
+</Project>
