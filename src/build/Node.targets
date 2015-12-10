@@ -1,0 +1,37 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BuildDependsOn>
+      SetupNode;
+      $(BuildDependsOn);
+    </BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="NodeHomeProperty" Condition="'$(NodeHome)' == ''">
+    <CreateProperty Value="$([System.String]::Format('$(NodeHomeBase)', '$(NodeVersion)'))">
+      <Output PropertyName="NodeHome" TaskParameter="Value" />
+    </CreateProperty>
+  </Target>
+
+  <Target Name="NodeDownloadUrlProperty" Condition="'$(NodeDownloadUrl)' == ''">
+    <CreateProperty Value="$([System.String]::Format('$(NodeDownloadUrlBase)', '$(NodeVersion)'))">
+      <Output PropertyName="NodeDownloadUrl" TaskParameter="Value" />
+    </CreateProperty>
+  </Target>
+
+  <Target Name="NodeExeFilePathProperty" DependsOnTargets="NodeHomeProperty">
+    <CreateProperty Value="$(NodeHome)\node.exe">
+      <Output PropertyName="NodeExeFilePath" TaskParameter="Value" />
+    </CreateProperty>
+  </Target>
+
+  <Target Name="DownloadNodeExeFile" DependsOnTargets="NodeDownloadUrlProperty;NodeExeFilePathProperty" Condition="!Exists('$(NodeExeFilePath)')">
+    <MakeDir Directories="$([System.IO.Path]::GetDirectoryName($(NodeExeFilePath)))" />
+    <Exec Command="powershell -Command Invoke-WebRequest &quot;$(NodeDownloadUrl)&quot; -OutFile &quot;$(NodeExeFilePath)&quot;" />
+  </Target>
+
+  <Target Name="SetupNode" DependsOnTargets="DownloadNodeExeFile">
+    <CreateProperty Value="&quot;$(NodeExeFilePath)&quot;">
+      <Output PropertyName="NodeCommand" TaskParameter="Value" />
+    </CreateProperty>
+  </Target>
+</Project>

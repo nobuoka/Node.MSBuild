@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <NodeVersion Condition="'$(NodeVersion)' == ''"
+      >5.2.0</NodeVersion>
+    <NodeHomeBase Condition="'$(NodeHomeBase)' == ''"
+      >$(USERPROFILE)\.node-msbuild\node-{0}</NodeHomeBase>
+    <NodeDownloadUrlBase Condition="'$(NodeDownloadUrlBase)' == ''"
+      >https://nodejs.org/dist/v{0}/win-x86/node.exe</NodeDownloadUrlBase>
+
+    <NodeHome Condition="'$(NodeHome)' == ''"></NodeHome>
+    <NodeDownloadUrl Condition="'$(NodeDownloadUrl)' == ''"></NodeDownloadUrl>
+  </PropertyGroup>
+</Project>
