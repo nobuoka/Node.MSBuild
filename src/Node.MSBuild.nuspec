@@ -2,6 +2,7 @@
 <package >
   <metadata>
     <id>Node.MSBuild</id>
+    <title>Node.MSBuild</title>
     <version>1.0.0</version>
     <authors>Yu Nobuoka</authors>
     <owners>Yu Nobuoka</owners>
