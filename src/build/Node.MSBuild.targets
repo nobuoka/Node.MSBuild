@@ -24,12 +24,16 @@
     </CreateProperty>
   </Target>
 
-  <Target Name="DownloadNodeExeFile" DependsOnTargets="NodeDownloadUrlProperty;NodeExeFilePathProperty" Condition="!Exists('$(NodeExeFilePath)')">
+  <Target Name="DownloadNodeExeFile" DependsOnTargets="NodeDownloadUrlProperty;NodeExeFilePathProperty">
     <MakeDir Directories="$([System.IO.Path]::GetDirectoryName($(NodeExeFilePath)))" />
     <Exec Command="powershell -Command Invoke-WebRequest &quot;$(NodeDownloadUrl)&quot; -OutFile &quot;$(NodeExeFilePath)&quot;" />
   </Target>
 
-  <Target Name="SetupNode" DependsOnTargets="DownloadNodeExeFile">
+  <Target Name="NodeExeFile" DependsOnTargets="NodeExeFilePathProperty">
+    <CallTarget Targets="DownloadNodeExeFile" Condition="!Exists('$(NodeExeFilePath)')" />
+  </Target>
+
+  <Target Name="SetupNode" DependsOnTargets="NodeExeFile">
     <CreateProperty Value="&quot;$(NodeExeFilePath)&quot;">
       <Output PropertyName="NodeCommand" TaskParameter="Value" />
     </CreateProperty>
