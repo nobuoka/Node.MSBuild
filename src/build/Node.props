@@ -2,12 +2,12 @@
   <PropertyGroup>
     <NodeVersion Condition="'$(NodeVersion)' == ''"
       >5.2.0</NodeVersion>
-    <NodeHome Condition="'$(NodeHome)' == ''"
-      >$(USERPROFILE)\.node-msbuild\node-$(NodeVersion)</NodeHome>
-    <NodeDownloadUrl Condition="'$(NodeDownloadUrl)' == ''"
-      >https://nodejs.org/dist/v$(NodeVersion)/win-x86/node.exe</NodeDownloadUrl>
-    <NodeExeFilePath Condition="'$(NodeExeFilePath)' == ''"
-      >$(NodeHome)\node.exe</NodeExeFilePath>
-    <NodeCommand>&quot;$(NodeExeFilePath)&quot;</NodeCommand>
+    <NodeHomeBase Condition="'$(NodeHomeBase)' == ''"
+      >$(USERPROFILE)\.node-msbuild\node-{0}</NodeHomeBase>
+    <NodeDownloadUrlBase Condition="'$(NodeDownloadUrlBase)' == ''"
+      >https://nodejs.org/dist/v{0}/win-x86/node.exe</NodeDownloadUrlBase>
+
+    <NodeHome Condition="'$(NodeHome)' == ''"></NodeHome>
+    <NodeDownloadUrl Condition="'$(NodeDownloadUrl)' == ''"></NodeDownloadUrl>
   </PropertyGroup>
 </Project>
