@@ -10,7 +10,8 @@
     <projectUrl>https://github.com/nobuoka/Node.MSBuild</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This project provides MSBuild target to set up Node.js.</description>
-    <releaseNotes>First release. This sets up Node.js 5.2.0 by default. The version of Node.js to be set up is able to be specified by a MSBuild property.</releaseNotes>
+    <releaseNotes>This sets up Node.js 5.2.0 by default. The version of Node.js to be set up is able to be specified by a MSBuild property.
+Some bugs are fixed from version 1.0.0.</releaseNotes>
     <copyright>Copyright 2015 Yu Nobuoka</copyright>
     <tags>JavaScript JS Node.js Node</tags>
   </metadata>
