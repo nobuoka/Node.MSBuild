@@ -1,0 +1,16 @@
+plugins {
+  id "com.ullink.nuget" version "2.11"
+}
+
+def outputDir = file('build')
+task('outputDir') {
+  outputs.upToDateWhen { outputDir.exists() }
+  doLast { outputDir.mkdirs() }
+}
+
+task pack(type: com.ullink.BaseNuGet, dependsOn: tasks.outputDir) {
+  inputs.sourceDir 'src'
+  outputs.dir outputDir
+  args 'pack', "${file('src/Node.MSBuild.nuspec')}", '-OutputDirectory', "${outputDir}"
+}
+assemble.dependsOn(pack)
