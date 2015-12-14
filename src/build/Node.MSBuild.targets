@@ -37,5 +37,8 @@
     <CreateProperty Value="&quot;$(NodeExeFilePath)&quot;">
       <Output PropertyName="NodeCommand" TaskParameter="Value" />
     </CreateProperty>
+    <CreateProperty Value="set PATH=$(NodeHome);%PATH%&amp; node">
+      <Output PropertyName="NodeCommandWithNodePathSetting" TaskParameter="Value" />
+    </CreateProperty>
   </Target>
 </Project>
